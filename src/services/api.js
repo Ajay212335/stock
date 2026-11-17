@@ -1,4 +1,8 @@
-const API_BASE = 'http://localhost:8001/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || (
+  typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:8001/api'
+    : 'https://stock-mo5n.onrender.com/api'
+);
 
 async function fetchJson(endpoint, options = {}) {
   try {
